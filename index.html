@@ -1,771 +1,799 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070A0F">
-  <meta name="description" content="ZEROONE — Digital Experiences. نصمم مواقع وتجارب رقمية حديثة وسريعة ومخصصة للعلامات التجارية والمناسبات والأعمال.">
-  <meta property="og:title" content="ZEROONE — Digital Experiences">
-  <meta property="og:description" content="We build digital experiences that matter.">
-  <meta property="og:type" content="website">
-  <title>ZEROONE — Digital Experiences</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZEROONE — حلول وتجارب رقمية متكاملة</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Primary SEO Meta Tags -->
+    <meta name="title" content="ZEROONE — حلول وتجارب رقمية متكاملة">
+    <meta name="description" content="ZEROONE تصمم مواقع حديثة، دعوات رقمية فاخرة، وحلولاً رقمية مخصصة تعكس هويتك وتلبي تطلعاتك.">
+    <meta name="keywords" content="ZEROONE, استوديو رقمي, تصميم مواقع, دعوات رقمية, تطوير برمجيات, UX/UI">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zeroone-solutions.vercel.app/">
+    <meta property="og:title" content="ZEROONE — حلول وتجارب رقمية متكاملة">
+    <meta property="og:description" content="مواقع، دعوات رقمية، وتجارب رقمية مخصصة مصممة حول هويتك.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop">
 
-  <style>
-    :root{
-      --bg:#070A0F;
-      --bg-2:#0B1018;
-      --panel:#0E141E;
-      --panel-2:#111925;
-      --line:rgba(255,255,255,.09);
-      --text:#F5F7FA;
-      --muted:#8C98A8;
-      --blue:#19A7FF;
-      --blue-2:#006DFF;
-      --cyan:#5BD6FF;
-      --white:#fff;
-      --radius:26px;
-      --max:1180px;
-    }
+    <!-- Fonts: Cairo for Bold Arabic Typography & Inter for Code/Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Cairo',sans-serif;
-      background:
-        radial-gradient(circle at 80% 5%,rgba(0,132,255,.12),transparent 28%),
-        radial-gradient(circle at 10% 45%,rgba(25,167,255,.06),transparent 25%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.7;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
-    .en{font-family:'Space Grotesk',sans-serif;direction:ltr}
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#09090b',
+                            dark: '#121215',
+                            card: '#18181c',
+                            border: '#27272a',
+                            muted: '#8e8e93',
+                            light: '#f4f4f5',
+                            accent: '#ffffff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'Inter', 'sans-serif'],
+                        mono: ['Inter', 'monospace']
+                    },
+                    letterSpacing: {
+                        widest: '.2em',
+                        mega: '.35em'
+                    }
+                }
+            }
+        }
+    </script>
 
-    /* ambient grid */
-    body:before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.32;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-      background-size:55px 55px;
-      mask-image:linear-gradient(to bottom,black,transparent 80%);
-      z-index:-1;
-    }
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    /* NAV */
-    .nav{
-      position:fixed;
-      top:0;left:0;right:0;
-      z-index:1000;
-      border-bottom:1px solid transparent;
-      transition:.3s;
-    }
-    .nav.scrolled{
-      background:rgba(7,10,15,.78);
-      backdrop-filter:blur(18px);
-      border-color:var(--line);
-    }
-    .nav-inner{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:30px;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand-mark{
-      width:38px;height:38px;
-      border:1px solid rgba(25,167,255,.65);
-      border-radius:11px;
-      display:grid;place-items:center;
-      background:linear-gradient(135deg,rgba(25,167,255,.18),rgba(0,109,255,.03));
-      box-shadow:0 0 25px rgba(25,167,255,.1);
-      position:relative;
-      overflow:hidden;
-    }
-    .brand-mark:after{
-      content:"";
-      width:16px;height:3px;
-      background:linear-gradient(90deg,var(--cyan),var(--blue-2));
-      transform:skew(-35deg) rotate(-25deg);
-      box-shadow:0 7px 0 var(--blue-2);
-    }
-    .brand-name{
-      font:700 1.22rem 'Space Grotesk',sans-serif;
-      letter-spacing:1.8px;
-    }
-    .brand-sub{
-      display:block;
-      color:var(--muted);
-      font-size:.55rem;
-      letter-spacing:2.4px;
-      margin-top:-3px;
-      direction:ltr;
-    }
-    .nav-links{display:flex;gap:28px;color:#AEB8C6;font-size:.9rem}
-    .nav-links a{transition:.25s}
-    .nav-links a:hover{color:var(--white)}
-    .nav-cta{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 18px;border:1px solid rgba(25,167,255,.35);
-      border-radius:999px;background:rgba(25,167,255,.08);
-      color:#DFF4FF;font-weight:700;font-size:.82rem;
-      transition:.25s;
-    }
-    .nav-cta:hover{background:var(--blue);border-color:var(--blue);color:#fff;transform:translateY(-2px)}
-    .menu-btn{display:none;background:none;border:0;color:#fff;font-size:1.3rem}
+    <style>
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
 
-    /* HERO */
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      padding:145px 0 85px;
-      position:relative;
-    }
-    .hero-wrap{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:65px;
-      align-items:center;
-    }
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:9px;
-      padding:7px 13px;border:1px solid rgba(25,167,255,.2);
-      border-radius:999px;background:rgba(25,167,255,.06);
-      color:#8EDBFF;font-size:.78rem;font-weight:700;
-      margin-bottom:24px;
-    }
-    .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 13px var(--blue)}
-    .hero h1{
-      font:700 clamp(3.1rem,7vw,6.4rem)/.92 'Space Grotesk',sans-serif;
-      letter-spacing:-4px;
-      direction:ltr;
-      text-align:left;
-      margin-bottom:25px;
-    }
-    .hero h1 span{
-      display:block;
-      background:linear-gradient(100deg,#fff 0%,#5BD6FF 45%,#168DFF 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .hero-copy{
-      max-width:650px;
-      color:var(--muted);
-      font-size:1.02rem;
-      margin-bottom:31px;
-    }
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
-      min-height:50px;padding:0 22px;border-radius:999px;
-      font-weight:800;font-size:.9rem;transition:.28s;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,#28B6FF,#006DFF);
-      box-shadow:0 12px 35px rgba(0,109,255,.22);
-    }
-    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,109,255,.32)}
-    .btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.025);color:#EAF0F7}
-    .btn-ghost:hover{border-color:rgba(25,167,255,.45);background:rgba(25,167,255,.07)}
+        /* Subtle Noise Overlay for Premium Feel */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+        }
 
-    /* HERO VISUAL */
-    .hero-visual{position:relative;min-height:500px;display:grid;place-items:center}
-    .orbit{
-      width:min(430px,85vw);aspect-ratio:1;
-      border:1px solid rgba(25,167,255,.14);
-      border-radius:50%;
-      position:relative;
-      box-shadow:inset 0 0 80px rgba(0,109,255,.035),0 0 100px rgba(0,109,255,.05);
-    }
-    .orbit:before,.orbit:after{
-      content:"";position:absolute;inset:12%;border:1px dashed rgba(91,214,255,.13);border-radius:50%;
-    }
-    .orbit:after{inset:26%;border-style:solid;border-color:rgba(255,255,255,.06)}
-    .core{
-      position:absolute;inset:25%;
-      display:grid;place-items:center;
-      border-radius:32%;
-      background:linear-gradient(145deg,#131D2B,#080C13);
-      border:1px solid rgba(91,214,255,.22);
-      box-shadow:0 0 70px rgba(0,109,255,.16),inset 0 0 50px rgba(25,167,255,.06);
-      transform:rotate(-8deg);
-    }
-    .core span{
-      font:700 5.5rem/1 'Space Grotesk',sans-serif;
-      color:#fff;letter-spacing:-8px;
-      transform:rotate(8deg);
-    }
-    .core span i{font-style:normal;color:var(--blue)}
-    .floating{
-      position:absolute;
-      padding:9px 12px;border:1px solid var(--line);
-      background:rgba(9,14,22,.78);backdrop-filter:blur(12px);
-      border-radius:12px;color:#C8D2DF;font-size:.68rem;
-      box-shadow:0 15px 35px rgba(0,0,0,.25);
-    }
-    .f1{top:12%;right:0}.f2{bottom:17%;left:0}.f3{top:50%;left:-4%}
+        /* Custom Hover Zoom Effect */
+        .project-card:hover .project-image {
+            transform: scale(1.03);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 0.4;
+        }
 
-    /* SECTION */
-    section{padding:105px 0}
-    .section-top{
-      display:flex;align-items:end;justify-content:space-between;gap:30px;
-      margin-bottom:45px;
-    }
-    .kicker{
-      color:#4FC8FF;text-transform:uppercase;
-      letter-spacing:2px;font:600 .72rem 'Space Grotesk',sans-serif;
-      direction:ltr;
-    }
-    .section-title{
-      font-size:clamp(2rem,4vw,3.4rem);
-      line-height:1.15;margin-top:8px;
-      font-weight:900;
-    }
-    .section-desc{color:var(--muted);max-width:520px;font-size:.92rem}
-
-    /* SERVICES */
-    .services{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
-    }
-    .service{
-      min-height:360px;padding:30px;
-      background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
-      border:1px solid var(--line);border-radius:var(--radius);
-      position:relative;overflow:hidden;transition:.35s;
-    }
-    .service:before{
-      content:"";position:absolute;width:190px;height:190px;
-      top:-100px;left:-80px;border-radius:50%;
-      background:rgba(25,167,255,.11);filter:blur(25px);
-    }
-    .service:hover{transform:translateY(-7px);border-color:rgba(25,167,255,.35);box-shadow:0 25px 60px rgba(0,0,0,.2)}
-    .service-num{font:600 .72rem 'Space Grotesk',sans-serif;color:#657387;direction:ltr}
-    .service-icon{
-      width:55px;height:55px;margin:38px 0 24px;
-      border-radius:16px;display:grid;place-items:center;
-      background:rgba(25,167,255,.08);border:1px solid rgba(25,167,255,.2);
-      color:#5BD6FF;font-size:1.2rem;
-    }
-    .service h3{font-size:1.35rem;margin-bottom:10px}
-    .service p{color:var(--muted);font-size:.86rem;line-height:1.9}
-    .service-link{position:absolute;bottom:27px;left:30px;color:#72D8FF;font-size:.78rem;font-weight:800;direction:ltr}
-
-    /* WORK */
-    .work-list{display:grid;gap:18px}
-    .work{
-      display:grid;grid-template-columns:1.05fr .95fr;
-      min-height:390px;overflow:hidden;
-      border:1px solid var(--line);border-radius:var(--radius);
-      background:#0B1018;
-    }
-    .work:nth-child(even){grid-template-columns:.95fr 1.05fr}
-    .work-info{padding:42px;display:flex;flex-direction:column;justify-content:center}
-    .work-meta{color:#62D3FF;font:600 .7rem 'Space Grotesk',sans-serif;letter-spacing:1.8px;direction:ltr}
-    .work h3{font-size:2rem;line-height:1.25;margin:12px 0}
-    .work p{color:var(--muted);font-size:.88rem;max-width:520px}
-    .work-tags{display:flex;flex-wrap:wrap;gap:7px;margin:21px 0}
-    .tag{padding:5px 10px;border:1px solid var(--line);border-radius:999px;color:#AAB6C5;font-size:.67rem}
-    .work-link{align-self:flex-start}
-    .preview{
-      min-height:390px;position:relative;overflow:hidden;
-      background:
-        radial-gradient(circle at 50% 30%,rgba(25,167,255,.2),transparent 35%),
-        linear-gradient(145deg,#111B29,#070A0F);
-      display:grid;place-items:center;padding:35px;
-    }
-    .preview-window{
-      width:82%;height:75%;border:1px solid rgba(255,255,255,.12);
-      border-radius:15px;background:#0A0F17;
-      box-shadow:0 30px 70px rgba(0,0,0,.45);
-      overflow:hidden;transform:rotate(-2deg);transition:.5s;
-    }
-    .work:hover .preview-window{transform:rotate(0) scale(1.025)}
-    .browser{
-      height:28px;border-bottom:1px solid var(--line);
-      display:flex;align-items:center;gap:5px;padding:0 10px;
-    }
-    .browser i{width:5px;height:5px;border-radius:50%;background:#4A5666}
-    .screen{padding:20px}
-    .screen-logo{font:700 1rem 'Space Grotesk',sans-serif;direction:ltr}
-    .screen-line{height:8px;border-radius:5px;background:rgba(255,255,255,.08);margin-top:13px;width:85%}
-    .screen-line.short{width:55%}
-    .screen-card{height:80px;border:1px solid rgba(25,167,255,.14);border-radius:12px;margin-top:18px;background:linear-gradient(135deg,rgba(25,167,255,.09),rgba(255,255,255,.015))}
-    .preview.wedding{background:radial-gradient(circle at 50% 45%,rgba(196,151,88,.18),transparent 35%),linear-gradient(145deg,#17120E,#080A0D)}
-    .preview.wedding .screen-card{border-color:rgba(216,174,103,.22);background:linear-gradient(135deg,rgba(216,174,103,.12),rgba(255,255,255,.015))}
-    .preview.wedding .screen-logo{font-family:'Cairo',sans-serif;color:#E5C48B;text-align:center}
-
-    /* PROCESS */
-    .process{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-      border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
-      background:var(--line);
-    }
-    .step{background:var(--panel);padding:30px;min-height:205px}
-    .step-num{font:700 2.2rem 'Space Grotesk',sans-serif;color:#20344B;direction:ltr}
-    .step h3{margin:18px 0 7px;font-size:1.05rem}
-    .step p{font-size:.78rem;color:var(--muted)}
-
-    /* ABOUT */
-    .about{
-      display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center;
-    }
-    .about-card{
-      min-height:370px;border:1px solid var(--line);border-radius:var(--radius);
-      background:linear-gradient(145deg,#0F1722,#080B11);
-      position:relative;overflow:hidden;display:grid;place-items:center;
-    }
-    .about-card:before{
-      content:"ZERO\nONE";white-space:pre;
-      position:absolute;font:700 8rem/.75 'Space Grotesk',sans-serif;
-      letter-spacing:-12px;color:rgba(255,255,255,.025);
-      transform:rotate(-8deg);
-    }
-    .about-badge{
-      position:relative;width:170px;height:170px;border-radius:50%;
-      display:grid;place-items:center;text-align:center;
-      border:1px solid rgba(25,167,255,.28);
-      box-shadow:0 0 80px rgba(0,109,255,.12);
-    }
-    .about-badge strong{font:700 3rem 'Space Grotesk',sans-serif}
-    .about-copy p{color:var(--muted);font-size:.95rem;max-width:620px;margin:18px 0}
-    .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:25px}
-    .principle{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}
-    .principle b{display:block;font-size:.8rem}
-    .principle span{font-size:.68rem;color:var(--muted)}
-
-    /* CTA */
-    .cta{
-      position:relative;overflow:hidden;
-      padding:75px 40px;border-radius:32px;
-      border:1px solid rgba(25,167,255,.22);
-      background:
-        radial-gradient(circle at 80% 20%,rgba(25,167,255,.17),transparent 35%),
-        linear-gradient(145deg,#0F1722,#090D14);
-      text-align:center;
-    }
-    .cta h2{font:700 clamp(2.2rem,5vw,4.5rem)/1.05 'Space Grotesk',sans-serif;direction:ltr;margin:10px 0 18px}
-    .cta p{color:var(--muted);max-width:560px;margin:0 auto 28px;font-size:.9rem}
-    .cta .btn{margin:4px}
-
-    /* FOOTER */
-    footer{padding:55px 0 25px;border-top:1px solid var(--line);margin-top:80px}
-    .footer-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
-    .footer-brand{font:700 2rem 'Space Grotesk',sans-serif;direction:ltr}
-    .footer-brand span{color:var(--blue)}
-    .footer-copy{color:var(--muted);font-size:.75rem;margin-top:5px}
-    .socials{display:flex;gap:8px}
-    .social{
-      width:40px;height:40px;border:1px solid var(--line);border-radius:12px;
-      display:grid;place-items:center;color:#B6C2D0;transition:.25s
-    }
-    .social:hover{border-color:var(--blue);color:#fff;background:rgba(25,167,255,.08);transform:translateY(-2px)}
-    .copyright{margin-top:35px;padding-top:18px;border-top:1px solid var(--line);color:#566273;font-size:.68rem;display:flex;justify-content:space-between;gap:15px}
-
-    /* reveal */
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-    .reveal.show{opacity:1;transform:none}
-
-    /* responsive */
-    @media(max-width:900px){
-      .nav-links{display:none}
-      .menu-btn{display:block}
-      .hero-wrap,.about{grid-template-columns:1fr}
-      .hero{padding-top:125px}
-      .hero-visual{min-height:410px;order:-1}
-      .hero h1{text-align:center}
-      .hero-copy{text-align:center;margin-inline:auto}
-      .hero-actions{justify-content:center}
-      .services{grid-template-columns:1fr}
-      .service{min-height:300px}
-      .work,.work:nth-child(even){grid-template-columns:1fr}
-      .work-info{padding:30px}
-      .preview{min-height:300px}
-      .process{grid-template-columns:repeat(2,1fr)}
-      .section-top{display:block}
-      .section-desc{margin-top:14px}
-    }
-    @media(max-width:600px){
-      .container{width:min(var(--max),calc(100% - 28px))}
-      .nav-inner{min-height:68px}
-      .nav-cta{padding:8px 12px;font-size:.72rem}
-      .brand-sub{display:none}
-      .hero h1{font-size:3.15rem;letter-spacing:-2.5px}
-      .hero-visual{min-height:340px}
-      .orbit{width:290px}
-      .core span{font-size:4rem}
-      .floating{font-size:.58rem}
-      .f3{left:-1%}
-      section{padding:75px 0}
-      .section-title{font-size:2rem}
-      .work h3{font-size:1.5rem}
-      .preview{min-height:250px;padding:20px}
-      .preview-window{width:92%;height:76%}
-      .process{grid-template-columns:1fr}
-      .step{min-height:auto}
-      .principles{grid-template-columns:1fr}
-      .cta{padding:55px 20px}
-      .footer-grid{grid-template-columns:1fr}
-      .copyright{display:block}
-      .copyright span{display:block;margin-top:7px}
-    }
-  </style>
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
 </head>
+<body class="bg-brand-black text-brand-light font-sans antialiased selection:bg-brand-light selection:text-brand-black bg-noise flex flex-col min-h-screen overflow-x-hidden">
 
-<body>
+    <!-- Signature Interactive Scroll Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-[2px] bg-brand-light z-50 transform origin-right scale-x-0 transition-transform duration-100"></div>
 
-  <nav class="nav" id="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>
-          <span class="brand-name">ZEROONE</span>
-          <span class="brand-sub">DIGITAL EXPERIENCES</span>
-        </span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#process">Process</a>
-        <a href="#about">About</a>
-      </div>
-
-      <a class="nav-cta" href="https://wa.me/249912934169?text=مرحباً%20ZEROONE،%20أريد%20بدء%20مشروع%20جديد" target="_blank" rel="noopener">
-        Start a Project <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      </a>
-      <button class="menu-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-    </div>
-  </nav>
-
-  <main>
-
-    <header class="hero">
-      <div class="container hero-wrap">
-
-        <div class="hero-copy-wrap reveal">
-          <div class="eyebrow"><span class="dot"></span> استوديو تجارب رقمية</div>
-
-          <h1 class="en">
-            WE BUILD
-            <span>DIGITAL</span>
-            EXPERIENCES.
-          </h1>
-
-          <p class="hero-copy">
-            نصمم ونطور مواقع وتجارب رقمية حديثة تجمع بين التصميم القوي،
-            الأداء السريع، والتفاصيل التي تجعل مشروعك مختلفاً عن الآخرين.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://wa.me/249912934169?text=مرحباً%20ZEROONE،%20أريد%20بدء%20مشروع%20جديد" target="_blank" rel="noopener">
-              ابدأ مشروعك <i class="fa-solid fa-arrow-left"></i>
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-brand-border/40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="group flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-light text-brand-black font-extrabold flex items-center justify-center text-sm tracking-tighter rounded-sm transition-transform group-hover:scale-95 duration-300">
+                    01
+                </div>
+                <span class="font-extrabold tracking-mega text-lg text-brand-light uppercase group-hover:opacity-80 transition-opacity font-mono">
+                    ZEROONE
+                </span>
             </a>
-            <a class="btn btn-ghost" href="#work">
-              شاهد أعمالنا <i class="fa-solid fa-arrow-down"></i>
-            </a>
-          </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-xs font-bold tracking-wider text-brand-muted uppercase">
+                <a href="#services" class="hover:text-brand-light transition-colors">خدماتنا</a>
+                <a href="#work" class="hover:text-brand-light transition-colors">أعمالنا</a>
+                <a href="#invitations" class="hover:text-brand-light transition-colors">الدعوات الرقمية</a>
+                <a href="#about" class="hover:text-brand-light transition-colors">لماذا ZEROONE</a>
+                <a href="#process" class="hover:text-brand-light transition-colors">طريقة العمل</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center">
+                <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-brand-black bg-brand-light px-5 py-2.5 rounded-full hover:bg-zinc-200 transition-all transform hover:-translate-y-0.5">
+                    <span>ابدأ مشروعك</span>
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" aria-label="افتح القائمة" class="md:hidden p-2 text-brand-light hover:text-brand-muted transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
 
-        <div class="hero-visual reveal">
-          <div class="orbit">
-            <div class="core"><span class="en">0<i>1</i></span></div>
-          </div>
-          <div class="floating f1 en">WEB / UI / UX</div>
-          <div class="floating f2 en">FAST × MODERN</div>
-          <div class="floating f3 en">DIGITAL 01</div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav border-b border-brand-border px-6 py-8 transition-all">
+            <nav class="flex flex-col gap-6 text-sm font-bold tracking-wider text-brand-muted uppercase">
+                <a href="#services" class="mobile-link hover:text-brand-light transition-colors">خدماتنا</a>
+                <a href="#work" class="mobile-link hover:text-brand-light transition-colors">أعمالنا المختارة</a>
+                <a href="#invitations" class="mobile-link hover:text-brand-light transition-colors">الدعوات الرقمية</a>
+                <a href="#about" class="mobile-link hover:text-brand-light transition-colors">لماذا ZEROONE</a>
+                <a href="#process" class="mobile-link hover:text-brand-light transition-colors">طريقة العمل</a>
+                <a href="#contact" class="mobile-link text-brand-light pt-4 border-t border-brand-border/60 flex items-center justify-between">
+                    <span>ابدأ مشروعك الآن</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </nav>
         </div>
-
-      </div>
     </header>
 
-    <section id="services">
-      <div class="container">
-        <div class="section-top reveal">
-          <div>
-            <div class="kicker">01 — What we do</div>
-            <h2 class="section-title">نصنع أكثر من مجرد موقع.</h2>
-          </div>
-          <p class="section-desc">
-            كل مشروع عندنا يبدأ من الفكرة وينتهي بتجربة رقمية لها شخصية واضحة،
-            ومصممة لتعمل بشكل ممتاز على الهاتف والكمبيوتر.
-          </p>
-        </div>
+    <main class="flex-grow pt-20">
 
-        <div class="services">
-          <article class="service reveal">
-            <div class="service-num">01 / WEB EXPERIENCES</div>
-            <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
-            <h3>مواقع رقمية حديثة</h3>
-            <p>مواقع تعريفية، صفحات هبوط، بورتفوليو ومواقع أعمال بواجهة عصرية وأداء سريع.</p>
-            <a class="service-link en" href="#work">EXPLORE →</a>
-          </article>
+        <!-- 01 — HERO SECTION -->
+        <section class="min-h-[85vh] flex items-center justify-center px-6 sm:px-8 py-20 relative overflow-hidden">
+            <!-- Subtle Radial Glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-zinc-800/20 blur-[140px] rounded-full pointer-events-none"></div>
 
-          <article class="service reveal">
-            <div class="service-num">02 / DIGITAL INVITATIONS</div>
-            <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            <h3>دعوات وتجارب المناسبات</h3>
-            <p>دعوات زفاف ومناسبات تفاعلية تجمع القصة، الموسيقى، العد التنازلي، الموقع والتواصل.</p>
-            <a class="service-link en" href="#work">EXPLORE →</a>
-          </article>
-
-          <article class="service reveal">
-            <div class="service-num">03 / DIGITAL SOLUTIONS</div>
-            <div class="service-icon"><i class="fa-solid fa-cubes"></i></div>
-            <h3>حلول رقمية مخصصة</h3>
-            <p>أفكار وأدوات رقمية مصممة حسب احتياج المشروع، من صفحات الخدمات إلى الحلول التفاعلية.</p>
-            <a class="service-link en" href="#contact">START →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="container">
-        <div class="section-top reveal">
-          <div>
-            <div class="kicker">02 — Selected work</div>
-            <h2 class="section-title">أعمال تتكلم عننا.</h2>
-          </div>
-          <p class="section-desc">
-            مجموعة من المشاريع التي تم بناؤها من الصفر، كل واحد منها له هدف وشخصية وتجربة مختلفة.
-          </p>
-        </div>
-
-        <div class="work-list">
-
-          <article class="work reveal">
-            <div class="work-info">
-              <div class="work-meta">01 — DIGITAL SOLUTIONS</div>
-              <h3 class="en">ZEROONE LIBRARY</h3>
-              <p>
-                منصة رقمية لخدمات الطباعة والحلول الرقمية والطلاب والبحوث والمستلزمات الرقمية،
-                مع توجيه العميل للخدمة المناسبة والتواصل المباشر.
-              </p>
-              <div class="work-tags">
-                <span class="tag">Digital Services</span>
-                <span class="tag">Mobile First</span>
-                <span class="tag">WhatsApp Flow</span>
-              </div>
-              <a class="btn btn-ghost work-link" href="https://ramiesam07.github.io/-ZeroOne-Library/" target="_blank" rel="noopener">
-                View Project ↗
-              </a>
-            </div>
-            <div class="preview">
-              <div class="preview-window">
-                <div class="browser"><i></i><i></i><i></i></div>
-                <div class="screen">
-                  <div class="screen-logo">ZeroOne</div>
-                  <div class="screen-line"></div>
-                  <div class="screen-line short"></div>
-                  <div class="screen-card"></div>
-                  <div class="screen-card"></div>
+            <div class="max-w-5xl mx-auto text-center z-10 space-y-10">
+                
+                <!-- Tagline -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-border/80 bg-brand-dark/50 text-[11px] font-mono tracking-wider text-brand-muted uppercase">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    استوديو تصميم وتجارب رقمية مخصصة
                 </div>
-              </div>
-            </div>
-          </article>
 
-          <article class="work reveal">
-            <div class="preview wedding">
-              <div class="preview-window">
-                <div class="browser"><i></i><i></i><i></i></div>
-                <div class="screen">
-                  <div class="screen-logo">Alfahashim × Dina</div>
-                  <div class="screen-line"></div>
-                  <div class="screen-line short"></div>
-                  <div class="screen-card"></div>
-                  <div class="screen-card"></div>
+                <!-- Main Arabic Headline -->
+                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-brand-light uppercase leading-[1.05]">
+                    نصنع تجارب رقمية استثنائية
+                </h1>
+
+                <!-- Clear Value Proposition -->
+                <div class="max-w-2xl mx-auto space-y-2">
+                    <p class="text-base sm:text-lg md:text-xl text-zinc-300 font-normal leading-relaxed">
+                        مواقع، دعوات رقمية، وتجارب رقمية مخصصة — مصممة تماماً حول هويتك.
+                    </p>
+                    <p class="text-xs sm:text-sm text-brand-muted font-mono tracking-wider dir-ltr opacity-80">
+                        Websites, digital invitations & custom digital experiences built around your identity.
+                    </p>
                 </div>
-              </div>
-            </div>
-            <div class="work-info">
-              <div class="work-meta">02 — WEDDING EXPERIENCE</div>
-              <h3>ALFAHASHIM × DINA</h3>
-              <p>
-                تجربة دعوة زفاف رقمية تفاعلية بتفاصيل مخصصة تشمل العد التنازلي،
-                الموسيقى، التهاني، الخريطة والمشاركة عبر واتساب.
-              </p>
-              <div class="work-tags">
-                <span class="tag">Interactive UI</span>
-                <span class="tag">Countdown</span>
-                <span class="tag">Guest Wishes</span>
-              </div>
-              <a class="btn btn-ghost work-link" href="https://alfahashim.vercel.app/" target="_blank" rel="noopener">
-                View Project ↗
-              </a>
-            </div>
-          </article>
 
-          <article class="work reveal">
-            <div class="work-info">
-              <div class="work-meta">03 — WEDDING EXPERIENCE</div>
-              <h3>MOSAB × AMNA</h3>
-              <p>
-                تجربة رقمية لمناسبة خاصة، مصممة لتكون شخصية وسهلة المشاركة وتعمل بشكل ممتاز على الهواتف.
-              </p>
-              <div class="work-tags">
-                <span class="tag">Wedding</span>
-                <span class="tag">Responsive</span>
-                <span class="tag">Digital Experience</span>
-              </div>
-              <a class="btn btn-ghost work-link" href="https://mosab-amna-wedding.vercel.app/" target="_blank" rel="noopener">
-                View Project ↗
-              </a>
-            </div>
-            <div class="preview wedding">
-              <div class="preview-window">
-                <div class="browser"><i></i><i></i><i></i></div>
-                <div class="screen">
-                  <div class="screen-logo">Mosab × Amna</div>
-                  <div class="screen-line"></div>
-                  <div class="screen-line short"></div>
-                  <div class="screen-card"></div>
-                  <div class="screen-card"></div>
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-light text-brand-black text-xs font-bold tracking-wider rounded-full hover:bg-zinc-200 transition-all transform hover:-translate-y-0.5 shadow-lg shadow-white/5">
+                        <span>ابدأ مشروعك</span>
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#work" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent text-brand-light border border-brand-border text-xs font-bold tracking-wider rounded-full hover:bg-brand-card hover:border-zinc-600 transition-all">
+                        <span>استعرض أعمالنا</span>
+                        <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    </a>
                 </div>
-              </div>
+
             </div>
-          </article>
+        </section>
 
-        </div>
-      </div>
-    </section>
+        <!-- 02 — ZEROONE STATEMENT -->
+        <section class="py-20 border-y border-brand-border/50 bg-brand-dark/30">
+            <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+                <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block">
+                    رؤية ZEROONE — 01
+                </span>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-brand-light uppercase leading-snug">
+                    العالم الرقمي يجب أن يكون يعبر عنك
+                </h2>
+                <p class="text-lg sm:text-xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed">
+                    «نحن نصمم تجارب رقمية فريدة لا تشبه أي تجربة أخرى.»
+                </p>
+                <p class="text-xs sm:text-sm text-brand-muted font-mono dir-ltr">
+                    We create digital experiences that don't look like everyone else's.
+                </p>
+            </div>
+        </section>
 
-    <section id="process">
-      <div class="container">
-        <div class="section-top reveal">
-          <div>
-            <div class="kicker">03 — Our process</div>
-            <h2 class="section-title">من الفكرة إلى الإطلاق.</h2>
-          </div>
-          <p class="section-desc">عملية بسيطة وواضحة بدون تعقيد، مع تواصل مباشر من البداية حتى التسليم.</p>
-        </div>
+        <!-- 03 — SERVICES SECTION -->
+        <section id="services" class="py-28 px-6 sm:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block mb-3">
+                        ماذا نقدم — 02
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-light tracking-tight uppercase">
+                        خدماتنا الرقمية
+                    </h2>
+                </div>
+                <p class="text-sm text-brand-muted max-w-sm">
+                    حلول رقمية متكاملة مصممة بعناية فائقة لتلبية تطلعاتك وتعزيز حضورك البصري.
+                </p>
+            </div>
 
-        <div class="process">
-          <div class="step reveal">
-            <div class="step-num">01</div>
-            <h3>DISCOVER</h3>
-            <p>نفهم فكرتك، جمهورك، وهدف المشروع قبل أن نبدأ التصميم.</p>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">02</div>
-            <h3>DESIGN</h3>
-            <p>نبني الهوية والواجهة وتجربة الاستخدام حول شخصية المشروع.</p>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">03</div>
-            <h3>BUILD</h3>
-            <p>نحوّل التصميم إلى تجربة سريعة، متجاوبة، وعملية.</p>
-          </div>
-          <div class="step reveal">
-            <div class="step-num">04</div>
-            <h3>LAUNCH</h3>
-            <p>نختبر المشروع، نربطه بالدومين، ثم نطلقه ليكون جاهزاً للجمهور.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+            <!-- Grid of Services -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Service 1 -->
+                <div class="group p-8 rounded-2xl bg-brand-card/60 border border-brand-border hover:border-zinc-600 transition-all duration-300 flex flex-col justify-between h-[320px]">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-brand-light mb-8 group-hover:scale-110 transition-transform">
+                            <i data-lucide="layout" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-brand-light tracking-tight uppercase mb-3">
+                            تجارب الويب الحديثة
+                        </h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
+                            مواقع وتجارب ويب حديثة ومبتكرة، مصممة بالكامل حول هوية وحجم مشروعك.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-brand-light group-hover:text-white transition-colors">
+                            <span>عرض التفاصيل</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
 
-    <section id="about">
-      <div class="container about">
-        <div class="about-card reveal">
-          <div class="about-badge">
+                <!-- Service 2 -->
+                <div class="group p-8 rounded-2xl bg-brand-card/60 border border-brand-border hover:border-zinc-600 transition-all duration-300 flex flex-col justify-between h-[320px]">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-brand-light mb-8 group-hover:scale-110 transition-transform">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-brand-light tracking-tight uppercase mb-3">
+                            الدعوات الرقمية الفاخرة
+                        </h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
+                            دعوات رقمية تفاعلية وأنيقة، صُممت خصيصاً لمناسباتكم واللحظات التي لا تُنسى.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#invitations" class="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-brand-light group-hover:text-white transition-colors">
+                            <span>استكشف الدعوات</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group p-8 rounded-2xl bg-brand-card/60 border border-brand-border hover:border-zinc-600 transition-all duration-300 flex flex-col justify-between h-[320px]">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-brand-light mb-8 group-hover:scale-110 transition-transform">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-brand-light tracking-tight uppercase mb-3">
+                            الحلول والمنتجات الرقمية
+                        </h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
+                            أنظمة وحلول برمجية مخصصة تناسب المتطلبات الفريدة لعملك ونشاطك التجاري.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-brand-light group-hover:text-white transition-colors">
+                            <span>طلب حل مخصص</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 04 — WHY ZEROONE -->
+        <section id="about" class="py-24 px-6 sm:px-8 bg-brand-dark/40 border-y border-brand-border/40">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                    <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block">
+                        تميزنا — 03
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-light tracking-tight uppercase">
+                        لماذا ZEROONE؟
+                    </h2>
+                    <p class="text-sm text-brand-muted">
+                        ثلاث مبادئ أساسية تجعل أعمالنا متفرّدة ومؤثرة دائماً.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="p-8 rounded-2xl bg-brand-black/80 border border-brand-border/70 space-y-4">
+                        <span class="text-xs font-mono text-brand-muted tracking-widest block">01</span>
+                        <h3 class="text-2xl font-black text-brand-light uppercase tracking-tight">
+                            تصميم مخصص بالكامل
+                        </h3>
+                        <h4 class="text-xs font-bold text-zinc-300 font-mono tracking-wider dir-ltr">
+                            Not Templates.
+                        </h4>
+                        <p class="text-sm text-brand-muted leading-relaxed pt-2">
+                            كل مشروع نصممه وفق هويته وأهدافه الخاصة، ولا نعتمد أبداً على القوالب الجاهزة أو المكررة.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="p-8 rounded-2xl bg-brand-black/80 border border-brand-border/70 space-y-4">
+                        <span class="text-xs font-mono text-brand-muted tracking-widest block">02</span>
+                        <h3 class="text-2xl font-black text-brand-light uppercase tracking-tight">
+                            حداثة وسرعة فائقة
+                        </h3>
+                        <h4 class="text-xs font-bold text-zinc-300 font-mono tracking-wider dir-ltr">
+                            Built for Today's World.
+                        </h4>
+                        <p class="text-sm text-brand-muted leading-relaxed pt-2">
+                            تجارب سريعة متجاوبة بسلاسة ومبنية بأحدث التقنيات لتعمل بكفاءة مطلقة على كافة الأجهزة.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="p-8 rounded-2xl bg-brand-black/80 border border-brand-border/70 space-y-4">
+                        <span class="text-xs font-mono text-brand-muted tracking-widest block">03</span>
+                        <h3 class="text-2xl font-black text-brand-light uppercase tracking-tight">
+                            طابع خاص وهوية مستقلة
+                        </h3>
+                        <h4 class="text-xs font-bold text-zinc-300 font-mono tracking-wider dir-ltr">
+                            Every Project Has An Identity.
+                        </h4>
+                        <p class="text-sm text-brand-muted leading-relaxed pt-2">
+                            نحن نصمم حول قصتك وعلامتك التجارية، لنضمن لك حضوراً بصرياً يترك انطباعاً دائماً.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 - 11 — SELECTED WORK -->
+        <section id="work" class="py-28 px-6 sm:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block mb-3">
+                        معرض الأعمال — 04
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-light tracking-tight uppercase">
+                        أعمالنا المختارة
+                    </h2>
+                </div>
+                <p class="text-sm text-brand-muted max-w-md">
+                    لقطات حقيقية من مشاريع نفذناها برؤية بصرية وجودة عالية لتتحدث عن تميزنا.
+                </p>
+            </div>
+
+            <!-- Showcase Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">
+                
+                <!-- Project 1: ZEROONE LIBRARY (Updated for Printing, Copying & Stationery Store) -->
+                <div class="project-card group cursor-pointer flex flex-col space-y-5">
+                    <!-- Image Container (Showcasing Printing, Copying & Office Supplies Environment) -->
+                    <div class="relative w-full aspect-[16/10] bg-brand-card rounded-2xl overflow-hidden border border-brand-border">
+                        <img 
+                            src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=80&w=1200&auto=format&fit=crop" 
+                            alt="مكتبة ZEROONE للطباعة والتصوير والخدمات المكتبية" 
+                            class="project-image w-full h-full object-cover object-center transition-transform duration-700 ease-out"
+                            loading="lazy"
+                        >
+                        <div class="project-overlay absolute inset-0 bg-brand-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-light text-brand-black text-xs font-bold tracking-wider rounded-full transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                عرض المشروع <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Meta & Info -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl sm:text-2xl font-black text-brand-light uppercase">
+                                ZEROONE LIBRARY
+                            </h3>
+                            <span class="text-[11px] font-mono tracking-wider text-brand-muted uppercase border border-brand-border px-2.5 py-1 rounded-full">
+                                حل رقمي للمكتبات
+                            </span>
+                        </div>
+                        <p class="text-sm text-brand-muted leading-relaxed">
+                            منصة رقمية متكاملة لمكتبة طباعة، تصوير مستندات، وبيع مستلزمات مكتبية تتيح طلب الخدمات والأدوات إلكترونياً.
+                        </p>
+                        <div class="pt-2 flex items-center gap-2 text-xs font-bold tracking-wider text-brand-light">
+                            <span>استعراض التفاصيل</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: ALFAHASHIM × DINA -->
+                <div class="project-card group cursor-pointer flex flex-col space-y-5">
+                    <!-- Image Container -->
+                    <div class="relative w-full aspect-[16/10] bg-brand-card rounded-2xl overflow-hidden border border-brand-border">
+                        <img 
+                            src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" 
+                            alt="دعوة زفاف الفهاشم ودينا الرقمية" 
+                            class="project-image w-full h-full object-cover object-center transition-transform duration-700 ease-out"
+                            loading="lazy"
+                        >
+                        <div class="project-overlay absolute inset-0 bg-brand-black/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-light text-brand-black text-xs font-bold tracking-wider rounded-full transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                عرض الدعوة <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Meta & Info -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl sm:text-2xl font-black text-brand-light uppercase">
+                                ALFAHASHIM × DINA
+                            </h3>
+                            <span class="text-[11px] font-mono tracking-wider text-brand-muted uppercase border border-brand-border px-2.5 py-1 rounded-full">
+                                دعوة رقمية
+                            </span>
+                        </div>
+                        <p class="text-sm text-brand-muted leading-relaxed">
+                            تجربة دعوة زفاف رقمية فاخرة ومصممة بهوية بصرية خاصة تناسب تفاصيل المناسبة المتميزة.
+                        </p>
+                        <div class="pt-2 flex items-center gap-2 text-xs font-bold tracking-wider text-brand-light">
+                            <span>استعراض الدعوة</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 12 — DIGITAL INVITATIONS AS A PRODUCT -->
+        <section id="invitations" class="py-24 px-6 sm:px-8 bg-zinc-950 border-y border-brand-border/60 relative overflow-hidden">
+            <!-- Background Accent Effect -->
+            <div class="absolute right-0 top-0 w-96 h-96 bg-zinc-800/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto space-y-16">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block">
+                        منتجنا الخاص — 05
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-light tracking-tight uppercase">
+                        الدعوات الرقمية
+                    </h2>
+                    <p class="text-base sm:text-lg text-zinc-300 font-semibold">
+                        «مناسبتك تستحق أكثر من مجرد رسالة نصية عادية»
+                    </p>
+                    
+                    <!-- Categories Pill -->
+                    <div class="pt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-mono tracking-wider text-brand-muted uppercase">
+                        <span class="px-3 py-1 rounded-full bg-brand-card border border-brand-border">زفاف</span>
+                        <span>•</span>
+                        <span class="px-3 py-1 rounded-full bg-brand-card border border-brand-border">خطوبة</span>
+                        <span>•</span>
+                        <span class="px-3 py-1 rounded-full bg-brand-card border border-brand-border">أعياد ميلاد</span>
+                        <span>•</span>
+                        <span class="px-3 py-1 rounded-full bg-brand-card border border-brand-border">تخرج</span>
+                        <span>•</span>
+                        <span class="px-3 py-1 rounded-full bg-brand-card border border-brand-border">فعاليات</span>
+                    </div>
+
+                    <p class="text-sm text-brand-muted pt-2 max-w-xl mx-auto leading-relaxed">
+                        دعوات رقمية أنيقة ومصممة بعناية حول مناسبتك الخاصة، قصتك، وهويتك البصرية، مع خاصية تأكيد الحضور والتأكيد على خريطة الموقع T.
+                    </p>
+                </div>
+
+                <!-- Featured Invitation Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    
+                    <!-- Sample 1 -->
+                    <div class="p-6 rounded-2xl bg-brand-card/40 border border-brand-border/80 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="h-48 w-full bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
+                                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop" alt="دعوة مناسبة فاخرة" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-light">دعوات الفعاليات والمناسبات الكبرى</h3>
+                            <p class="text-xs text-brand-muted leading-relaxed">
+                                تصميم تفاعلي فاخر يتضمن جدول المناسبة، عداد تنازلي، تأكيد الحضور والخريطة التفاعلية.
+                            </p>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-brand-light hover:text-white pt-2">
+                            <span>اطلب دعوتك الخاصة</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+
+                    <!-- Sample 2 -->
+                    <div class="p-6 rounded-2xl bg-brand-card/40 border border-brand-border/80 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="h-48 w-full bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800&auto=format&fit=crop" alt="دعوة زفاف راقية" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-light">دعوة زفاف بتصميم Minimal فاخر</h3>
+                            <p class="text-xs text-brand-muted leading-relaxed">
+                                تصميم مبسط وأنيق يعتمد على قوة الخطوط واللمسات البصرية لإعطاء انطباع تميز استثنائي.
+                            </p>
+                        </div>
+                        <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-brand-light hover:text-white pt-2">
+                            <span>اطلب دعوتك الخاصة</span>
+                            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Call to Action for Invitations -->
+                <div class="text-center pt-6">
+                    <a href="#contact" class="inline-flex items-center gap-3 px-8 py-4 bg-brand-light text-brand-black text-xs font-bold tracking-wider rounded-full hover:bg-zinc-200 transition-all shadow-lg shadow-white/5">
+                        <span>صمم دعوتك الرقمية الآن</span>
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 13 — EMOTIONAL ENGAGEMENT SECTION -->
+        <section class="py-24 px-6 sm:px-8 text-center max-w-4xl mx-auto space-y-8">
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-brand-light uppercase leading-tight">
+                فكرتك تستحق تجربة رقمية استثنائية
+            </h2>
+            <p class="text-base sm:text-xl text-zinc-300 font-light max-w-2xl mx-auto leading-relaxed">
+                سواء كانت علامة تجارية، موقعاً إلكترونياً، دعوة خاصة أو حلاً برمجياً مخصصاً — لنبني شيئاً يذكره الناس دائماً.
+            </p>
+            <p class="text-xs sm:text-sm text-brand-muted font-mono dir-ltr">
+                "Let's build something people remember."
+            </p>
             <div>
-              <strong class="en">01</strong>
-              <small class="en" style="display:block;color:#6ED7FF;letter-spacing:2px">ZEROONE</small>
+                <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-brand-black bg-brand-light px-8 py-3.5 rounded-full hover:bg-zinc-200 transition-all">
+                    <span>ابدأ مشروعك معنا</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
             </div>
-          </div>
+        </section>
+
+        <!-- 15 — HOW WE BUILD (PROCESS) -->
+        <section id="process" class="py-24 px-6 sm:px-8 bg-brand-dark/30 border-t border-brand-border/40">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                    <div>
+                        <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block mb-3">
+                            منهجيتنا — 06
+                        </span>
+                        <h2 class="text-3xl sm:text-5xl font-black text-brand-light tracking-tight uppercase">
+                            طريقة العمل
+                        </h2>
+                    </div>
+                    <p class="text-sm text-brand-muted max-w-xs">
+                        رحلة عمل واضحة ومدروسة لضمان تحويل فكرتك إلى واقع بمهنية عالية.
+                    </p>
+                </div>
+
+                <!-- Process Steps Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Step 1 -->
+                    <div class="p-6 rounded-2xl bg-brand-black border border-brand-border/60 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono text-zinc-500">01</span>
+                            <span class="text-[10px] font-mono tracking-widest text-brand-muted uppercase">DISCOVER</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-light uppercase">
+                            الاستكشاف والفهم
+                        </h3>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            نفهم الفكرة والاحتياج بدقة، ونحلل الأهداف لبناء خطة عمل واضحة.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="p-6 rounded-2xl bg-brand-black border border-brand-border/60 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono text-zinc-500">02</span>
+                            <span class="text-[10px] font-mono tracking-widest text-brand-muted uppercase">DESIGN</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-light uppercase">
+                            التصميم والتجسيد
+                        </h3>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            نبني الهوية البصرية والواجهات التفاعلية بما يضمن تجربة مستخدم مبهرة.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="p-6 rounded-2xl bg-brand-black border border-brand-border/60 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono text-zinc-500">03</span>
+                            <span class="text-[10px] font-mono tracking-widest text-brand-muted uppercase">BUILD</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-light uppercase">
+                            التطوير والبرمجة
+                        </h3>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            نحول التصميم إلى منصة رقمية حقيقية تتسم بالسرعة والأمان العالي.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="p-6 rounded-2xl bg-brand-black border border-brand-border/60 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono text-zinc-500">04</span>
+                            <span class="text-[10px] font-mono tracking-widest text-brand-muted uppercase">LAUNCH</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-light uppercase">
+                            الإطلاق والتسليم
+                        </h3>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            نطلق المشروع بنجاح، ونضمن تسليمه للعميل بجودة تفوق التوقعات.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 16 — FINAL CALL TO ACTION -->
+        <section class="py-32 px-6 sm:px-8 border-t border-brand-border text-center relative">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <span class="text-[10px] font-mono tracking-mega text-brand-muted uppercase block">
+                    اتخذ الخطوة — 07
+                </span>
+                
+                <h2 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-brand-light uppercase leading-tight">
+                    لديك فكرة؟<br>
+                    <span class="text-zinc-400">لنحولها إلى تجربة رقمية حقيقية.</span>
+                </h2>
+
+                <p class="text-base sm:text-lg text-brand-muted max-w-lg mx-auto">
+                    تواصل معنا وأخبرنا بما تتخيله، ونحن نأخذ الفكرة من هناك لنحولها إلى واقع.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-9 py-4 bg-brand-light text-brand-black text-xs font-bold tracking-wider rounded-full hover:bg-zinc-200 transition-all">
+                        <span>ابدأ مشروعك الآن</span>
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-9 py-4 bg-transparent text-brand-light border border-brand-border text-xs font-bold tracking-wider rounded-full hover:bg-brand-card transition-all">
+                        <span>تحدث معنا</span>
+                        <i data-lucide="message-square" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 17 — CONTACT SECTION -->
+        <section id="contact" class="py-20 px-6 sm:px-8 bg-brand-card/30 border-t border-brand-border/60">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+                
+                <!-- Contact Direct 1 -->
+                <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer" class="p-8 rounded-2xl bg-brand-black/60 border border-brand-border/80 hover:border-zinc-500 transition-all group flex flex-col justify-between h-48">
+                    <div class="flex items-center justify-between text-brand-muted">
+                        <span class="text-xs font-mono tracking-wider uppercase">محادثة مباشرة</span>
+                        <i data-lucide="message-circle" class="w-5 h-5 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-light">واتساب / WhatsApp</h3>
+                        <p class="text-xs text-brand-muted pt-1">تواصل مباشرة مع فريقنا</p>
+                    </div>
+                </a>
+
+                <!-- Contact Direct 2 -->
+                <a href="mailto:hello@zeroone.studio" class="p-8 rounded-2xl bg-brand-black/60 border border-brand-border/80 hover:border-zinc-500 transition-all group flex flex-col justify-between h-48">
+                    <div class="flex items-center justify-between text-brand-muted">
+                        <span class="text-xs font-mono tracking-wider uppercase">البريد الإلكتروني</span>
+                        <i data-lucide="mail" class="w-5 h-5 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-light font-mono dir-ltr text-right">hello@zeroone.studio</h3>
+                        <p class="text-xs text-brand-muted pt-1">أرسل لنا تفاصيل مشروعك</p>
+                    </div>
+                </a>
+
+                <!-- Contact Direct 3 -->
+                <div class="p-8 rounded-2xl bg-brand-black/60 border border-brand-border/80 flex flex-col justify-between h-48">
+                    <div class="flex items-center justify-between text-brand-muted">
+                        <span class="text-xs font-mono tracking-wider uppercase">وسائل التواصل</span>
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-lg font-bold text-brand-light">تابع ZEROONE</h3>
+                        <div class="flex items-center gap-4 text-xs font-mono text-brand-muted dir-ltr justify-end">
+                            <a href="#" class="hover:text-brand-light transition-colors">X (TWITTER)</a>
+                            <span>•</span>
+                            <a href="#" class="hover:text-brand-light transition-colors">INSTAGRAM</a>
+                            <span>•</span>
+                            <a href="#" class="hover:text-brand-light transition-colors">LINKEDIN</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 18 — FOOTER -->
+    <footer class="border-t border-brand-border/80 bg-brand-black text-brand-muted text-xs py-12 px-6 sm:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            
+            <!-- Brand Info -->
+            <div class="space-y-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-6 bg-brand-light text-brand-black font-extrabold flex items-center justify-center text-xs rounded-sm">
+                        01
+                    </div>
+                    <span class="font-extrabold tracking-mega text-base text-brand-light uppercase font-mono">
+                        ZEROONE
+                    </span>
+                </div>
+                <p class="text-brand-muted text-[11px] font-mono tracking-wider dir-ltr">
+                    Digital Solutions & Studio
+                </p>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="flex flex-wrap items-center gap-6 text-[11px] font-bold tracking-wider uppercase">
+                <a href="#" class="hover:text-brand-light transition-colors">الرئيسية</a>
+                <a href="#services" class="hover:text-brand-light transition-colors">الخدمات</a>
+                <a href="#work" class="hover:text-brand-light transition-colors">الأعمال</a>
+                <a href="#invitations" class="hover:text-brand-light transition-colors">الدعوات</a>
+                <a href="#about" class="hover:text-brand-light transition-colors">عن ZEROONE</a>
+                <a href="#contact" class="hover:text-brand-light transition-colors">التواصل</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-[11px] font-mono tracking-wider text-zinc-600 dir-ltr">
+                © 2026 ZEROONE. ALL RIGHTS RESERVED.
+            </div>
+
         </div>
+    </footer>
 
-        <div class="about-copy reveal">
-          <div class="kicker">04 — About ZEROONE</div>
-          <h2 class="section-title">نحن لا نبيع قوالب.<br>نحن نبني هوية رقمية.</h2>
-          <p>
-            ZEROONE هو استوديو رقمي يركز على بناء تجارب ومواقع لها حضور واضح.
-            هدفنا أن يكون كل مشروع سريعاً، جميلاً، ومختلفاً عن الحلول الجاهزة.
-          </p>
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-          <div class="principles">
-            <div class="principle"><b>01 — CUSTOM</b><span>كل مشروع له تصميمه وشخصيته.</span></div>
-            <div class="principle"><b>02 — FAST</b><span>أداء سريع وتجربة مريحة.</span></div>
-            <div class="principle"><b>03 — MODERN</b><span>واجهات تناسب العصر الرقمي.</span></div>
-            <div class="principle"><b>04 — DIRECT</b><span>تواصل مباشر وواضح.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    <section id="contact">
-      <div class="container">
-        <div class="cta reveal">
-          <div class="kicker">05 — Start something</div>
-          <h2>HAVE AN IDEA?<br><span style="color:#5BD6FF">LET'S BUILD IT.</span></h2>
-          <p>عندك فكرة لموقع، دعوة، منصة أو حل رقمي؟ أرسل لنا فكرتك ونبدأ من هناك.</p>
-          <a class="btn btn-primary" href="https://wa.me/249912934169?text=مرحباً%20ZEROONE،%20لدي%20فكرة%20مشروع%20وأريد%20مناقشتها%20معكم." target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i> تحدث معنا على واتساب
-          </a>
-          <a class="btn btn-ghost" href="tel:+249912934169">
-            <i class="fa-solid fa-phone"></i> اتصال مباشر
-          </a>
-        </div>
-      </div>
-    </section>
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">ZERO<span>ONE</span></div>
-          <div class="footer-copy">DIGITAL EXPERIENCES — Websites, Invitations & Digital Solutions.</div>
-        </div>
-
-        <div class="socials">
-          <a class="social" href="https://wa.me/249912934169" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          <!-- ضع رابط فيسبوك/إنستغرام هنا لاحقاً -->
-          <a class="social" href="#work" aria-label="Portfolio"><i class="fa-solid fa-briefcase"></i></a>
-          <a class="social" href="mailto:hello@zeroone.dev" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-      </div>
-
-      <div class="copyright">
-        <span>© 2026 ZEROONE. All rights reserved.</span>
-        <span>Built with intention. <span style="color:#19A7FF">01</span></span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const nav = document.getElementById('nav');
-
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 30);
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
         }
-      });
-    }, {threshold:0.12});
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+        // Signature Scroll Progress Indicator (19 — ZEROONE Signature Interaction)
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height);
+            const progressEl = document.getElementById('scroll-progress');
+            if (progressEl) {
+                progressEl.style.transform = `scaleX(${scrolled})`;
+            }
+        });
+    </script>
 </body>
 </html>
+
